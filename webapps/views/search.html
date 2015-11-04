@@ -1,13 +1,73 @@
 <%-include("header.html");%>
-<ul>
-<%if (locals.records && records.length) {
-	for (var i=0 ; i<records.length; i++) { 
-		var record = records[i];%>
-<li>
-	<%-include("module/record.html",record)%>
-</li>
-<%}}else{%>
-	<p>未能搜到任何结果</p>
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">inFocus</a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <form method="GET" action="/search" class="navbar-form navbar-left">
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="keyword" style="max-width: 600px;min-width: 400px;">
+                        <span class="input-group-btn">
+                            <button  class="btn btn-primary" type="submit"><span class="glyphicon glyphicon-search"></span></button>
+                        </span>
+                    </div><!-- /input-group -->
+                </form>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+<div class="row">
+    <div class="col-md-8" style="padding-left:100px; text-align:left;" >
+<%if (locals.data && data.info && data.info.total>0) {
+    var records = data.records;
+    var startIndex = data.info.startIndex;
+    var total = data.info.total;
+    var itemsPerPage = data.info.itemsPerPage;
+    var keyword = data.info.searchTerms;%>
+    <div class="searchInfo">
+        <small>找到约<%=total%>条结果</small>
+    </div>
+    <%for (var i=0 ; i<records.length; i++) { var record = records[i];%>
+    <%-include("module/record.html",record)%>
+    <%}%>
+<nav>
+  <ul class="pagination">
+    <%if(startIndex>0){
+        var start = Math.max(startIndex-itemsPerPage,0);%>
+    <li>
+      <a href="/search?keyword=<%=keyword%>&start=<%=start%>" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    <%}%>
+    <% for(var i=0 ; i<total/itemsPerPage && i<10; i++) {%>
+        <li><a href="/search?keyword=<%=keyword%>&start=<%=i*itemsPerPage%>"><%=i+1%></a></li>
+    <%}%>
+    <%if(startIndex+itemsPerPage<total) {
+        var start = Math.min(startIndex+itemsPerPage,total);%>
+    <li>
+      <a href="/search?keyword=<%=keyword%>&start=<%=start%>" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+    <%}%>
+  </ul>
+</nav>
+<%}else{%>
+<p>未能搜到任何结果</p>
 <%}%>
-</ul>
-<%-include("footer.html");%>
+</div>
+<div class="col-md-4">
+</div>
+</div>
+        
+        <%-include("footer.html");%>

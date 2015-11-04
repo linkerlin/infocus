@@ -7,8 +7,16 @@ router.get('/', function(req, res, next) {
     res.render('index');
 });
 
-function makeRecords(data) {
-    return data.items;
+function makeDisplayData(data) {
+    return {
+        records:data.items,
+        info:{
+            total:parseInt(data.totalResults),
+            searchTerms:data.searchTerms,
+            itemsPerPage:parseInt(data.itemsPerPage),
+            startIndex:parseInt(data.startIndex)
+        }
+    };
 }
 
 router.get('/search', function(req, res, next) {
@@ -17,15 +25,16 @@ router.get('/search', function(req, res, next) {
     if (!keyword) {
         res.redirect("/");
     }
-    searchService.query({keyword:keyword},function(e,data,info) {
+    searchService.query(query,function(e,data,info) {
         if (e) {
             next(e);
         } else if (!data) {
             next({error:null,message:info});
         } else {
-            var records = makeRecords(data);
+            var displayData = makeDisplayData(data);
+            console.log(displayData);
             res.render('search', {
-                records: records
+                data: displayData
             });
         }
     });

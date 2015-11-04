@@ -1,6 +1,30 @@
 <%-include("header.html");%>
-<form method="GET" action="/search">
-	<input type="text" name="keyword">
-	<input type="submit" value="搜索">
-</form>
+<div class="site-wrapper">
+    <div class="site-wrapper-inner">
+        <div class="cover-container">
+            <div class="masthead clearfix">
+                <div class="inner">
+                    <h3 class="masthead-brand">inFocus</h3>
+                    <nav>
+                        <ul class="nav masthead-nav">
+                            <li class="active"><a href="#">搜索</a></li>
+                            <li><a href="#">热门</a></li>
+                            <li><a href="#">关于</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <div class="inner cover">
+                <form method="GET" action="/search" class="form">
+                    <div class="input-group">
+                        <input type="text" class="form-control input-lg" name="keyword">
+                        <span class="input-group-btn">
+                            <button  class="btn btn-default btn-lg" type="submit"><span class="glyphicon glyphicon-search"></span></button>
+                        </span>
+                    </div><!-- /input-group -->
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 <%-include("footer.html");%>

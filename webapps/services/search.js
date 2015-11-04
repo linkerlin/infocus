@@ -4,6 +4,9 @@ module.exports = {
     query:function (options, next) {
         var path = search_server.path;
         path+="?query="+options.keyword;
+        if (options.start) {
+            path+="&start="+options.start;
+        }
         Utils.get(path,function(e, data) {
             if (e) {
                 next(e);
