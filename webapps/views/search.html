@@ -1,0 +1,13 @@
+<%-include("header.html");%>
+<ul>
+<%if (locals.records && records.length) {
+	for (var i=0 ; i<records.length; i++) { 
+		var record = records[i];%>
+<li>
+	<%-include("module/record.html",record)%>
+</li>
+<%}}else{%>
+	<p>未能搜到任何结果</p>
+<%}%>
+</ul>
+<%-include("footer.html");%>
