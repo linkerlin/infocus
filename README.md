@@ -1,7 +1,7 @@
 # infocus
 自动聚合专题的网站
 
-## prerequirements
+## prerequisite
 nodejs 0.10+
 
 ## setup
