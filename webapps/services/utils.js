@@ -54,16 +54,7 @@ var _post = function(raw_data,path,next) {
     req.end();
 };
 
-var _get = function(path,next) {
-    var opt = {
-        hostname: search_server.host,
-        port: search_server.port,
-        path: path,
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    };
+function request(count, opt, next, done) {
     http.get(opt, function(rsp) {
         var chunks = [];
         rsp.setEncoding('utf8');
@@ -84,17 +75,30 @@ var _get = function(path,next) {
             } catch (err) {
                 logger.error(err);
             }
-            next(null,json);
-        });
-        rsp.on('error', function(e) {
-            logger.error(opt.path,e);
-            next(e);
+            done(null, json);
         });
     })
     .on('error', function(e) {
         logger.error(opt.path,e.stack || e);
-        next(e);
+        if (count<10) {
+            next(count+1, opt, next, done);
+        } else {
+            done(e);
+        }
     });
+}
+
+var _get = function(path,next) {
+    var opt = {
+        hostname: search_server.host,
+        port: search_server.port,
+        path: path,
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    };
+    request(0,opt,request,next);
 };
 
 module.exports = {
