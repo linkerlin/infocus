@@ -19,5 +19,17 @@
         "mongodb":{
             "url":"mongodb://localhost:27017/infocus"
         }
+    },
+    "auth":{
+        "clientID":"xxx",
+        "clientSecret":"xxx"
+    },
+    "session":{
+        "secret":"infocus",
+        "redis": {
+            "host":"localhost",
+            "port":"6379",
+            "prefix":"infocus."
+        }
     }
 }

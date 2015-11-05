@@ -3,11 +3,13 @@ var path = require('path');
 var favicon = require('serve-favicon');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
+var passport = require('passport');
 var routes = require('./routes/index');
-
+var session = require('express-session');
+var RedisStore = require('connect-redis')(session);
+var config = require('config');
 var app = express();
-
+var auth = require('./routes/auth');
 // view engine setup
 app.engine('html', require('ejs').renderFile);
 app.set('views', path.join(__dirname, 'views'));
@@ -19,9 +21,19 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(passport.initialize());
+var sessionOpt = {
+    secret: config.session.secret,
+    saveUninitialized: true
+};
+if (config.session.redis) {
+    sessionOpt.store = new RedisStore(config.session.redis);
+}
 
+
+app.use(session(sessionOpt));
 app.use('/', routes);
-
+app.use('/auth',auth);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');

@@ -15,6 +15,28 @@ module.exports = {
         .limit(count)
         .exec(callback);
     },
+    findOrCreate: function(profile, callback) {
+        User
+        .findOne({weiboid:profile.id})
+        .exec(function(e, user){
+            console.log("user",user);
+            if (e) {
+                callback(e);
+            } else if (!user) {
+                var newuser = new User({
+                    weiboid:profile.id,
+                    username:profile.displayName,
+                    nickname:profile.displayName,
+                    avatar:profile._raw.profile_image_url,
+                    gender:profile._raw.gender,
+                    weibouid:profile._raw.profile_url
+                });
+                newuser.save(callback);
+            } else {
+                callback(null,user);
+            }
+        });
+    },
     findOne: function(filter,callback) {
         User
         .findOne(filter)

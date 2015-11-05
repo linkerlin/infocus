@@ -15,7 +15,12 @@
     "log4js": "^0.6.27",
     "mongoose": "^4.2.4",
     "morgan": "~1.5.3",
+    "passport": "^0.3.0",
+    "passport-weibo": "^0.1.2",
     "serve-favicon": "~2.2.1",
-    "underscore": "^1.8.3"
+    "underscore": "^1.8.3",
+    "express-session": "^1.11.2",
+    "passport": "^0.2.2",
+    "passport-local": "^1.0.0"
   }
 }
