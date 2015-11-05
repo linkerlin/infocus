@@ -1,4 +1,8 @@
 <%-include("header.html");%>
+<%var keyword = "";
+ if (locals.data && data.info) {
+    keyword = data.info.searchTerms;
+}%>
 <nav class="navbar navbar-default">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -15,7 +19,7 @@
             <ul class="nav navbar-nav">
                 <form method="GET" action="/search" class="navbar-form navbar-left">
                     <div class="input-group">
-                        <input type="text" class="form-control" name="keyword" style="max-width: 600px;min-width: 400px;">
+                        <input type="text" class="form-control" name="keyword" style="max-width: 600px;min-width: 400px;" value="<%=keyword%>">
                         <span class="input-group-btn">
                             <button  class="btn btn-primary" type="submit"><span class="glyphicon glyphicon-search"></span></button>
                         </span>
@@ -31,8 +35,7 @@
     var records = data.records;
     var startIndex = data.info.startIndex;
     var total = data.info.total;
-    var itemsPerPage = data.info.itemsPerPage;
-    var keyword = data.info.searchTerms;%>
+    var itemsPerPage = data.info.itemsPerPage;%>
     <div class="searchInfo">
         <small>找到约<%=total%>条结果</small>
     </div>
