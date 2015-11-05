@@ -8,21 +8,58 @@
                     <nav>
                         <ul class="nav masthead-nav">
                             <li class="active"><a href="#">搜索</a></li>
-                            <li><a href="#">热门</a></li>
+                            <li><a href="#topics">话题</a></li>
                             <li><a href="#">关于</a></li>
                         </ul>
                     </nav>
                 </div>
             </div>
             <div class="inner cover">
-                <form method="GET" action="/search" class="form">
-                    <div class="input-group">
-                        <input type="text" class="form-control input-lg" name="keyword">
-                        <span class="input-group-btn">
-                            <button  class="btn btn-default btn-lg" type="submit"><span class="glyphicon glyphicon-search"></span></button>
-                        </span>
-                    </div><!-- /input-group -->
-                </form>
+                <div id="search" class="search">
+                    <form method="GET" action="/search" class="form">
+                        <div class="input-group">
+                            <input type="text" class="form-control input-lg" name="keyword">
+                            <span class="input-group-btn">
+                                <button  class="btn btn-default btn-lg" type="submit"><span class="glyphicon glyphicon-search"></span></button>
+                            </span>
+                        </div><!-- /input-group -->
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div id="topics" class="topics">
+            <h2 class="page-header">话题</h2>
+            <div class="row topic-leve1">
+                <div class="col-md-6">
+                    <div class="topic topic-lg">
+                        <div class="topic-content" style="height:280px;">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="topic">
+                        <div class="topic-content">
+                        </div>
+                    </div>
+                    <div class="topic">
+                        <div class="topic-content">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row topic-leve2">
+                <div class="col-md-6">
+                    <div class="topic">
+                        <div class="topic-content">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="topic">
+                        <div class="topic-content">
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

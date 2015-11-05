@@ -32,7 +32,7 @@ router.get('/search', function(req, res, next) {
             next({error:null,message:info});
         } else {
             var displayData = makeDisplayData(data);
-            console.log(displayData);
+            //console.log(displayData);
             res.render('search', {
                 data: displayData
             });

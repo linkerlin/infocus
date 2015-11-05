@@ -1,5 +1,6 @@
 var search_server = require("config").search_server;
 var Utils = require("./utils");
+var logger = require("../lib/logger").getLogger('search');
 module.exports = {
     query:function (options, next) {
         var path = search_server.path;
@@ -7,6 +8,7 @@ module.exports = {
         if (options.start) {
             path+="&start="+options.start;
         }
+        logger.info("request",path);
         Utils.get(path,function(e, data) {
             if (e) {
                 next(e);

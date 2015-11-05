@@ -84,13 +84,6 @@ var _get = function(path,next) {
             } catch (err) {
                 logger.error(err);
             }
-            var status = json.status;
-            if (status != "OK") {
-                logger.error(opt.path, status+ " "+ json.errormessage);
-            }
-            else {
-                logger.info(opt.path);
-            }
             next(null,json);
         });
         rsp.on('error', function(e) {
