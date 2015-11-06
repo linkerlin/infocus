@@ -8,7 +8,7 @@ module.exports = {
         if (options.start) {
             path+="&start="+options.start;
         }
-        logger.info("request",path);
+        logger.info("query ["+options.userid+"]",path);
         Utils.get(path,function(e, data) {
             if (e) {
                 next(e);

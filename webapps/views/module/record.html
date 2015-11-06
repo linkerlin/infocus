@@ -1,4 +1,16 @@
 <div style="text-align:left; padding-top:20px;">
-<h4><%=locals.title%></h4>
-<p><a href="<%=locals.link%>" target="_blank"><%=locals.link%></a></p>
+<h4><a href="<%=locals.link%>" target="_blank"><%=locals.title%></a></h4>
+<div>
+<p><%=locals.link%><br>
+<%
+date = new Date(locals.pubDate);
+displayDate = date.toLocaleDateString();
+displayTime = date.toLocaleTimeString();
+%>
+<small><span class="glyphicon glyphicon-time" alt="<%=displayTime%>"></span> <%=displayDate%></small>
+<br>
+<a class="btn btn-default btn-xs"><span class="glyphicon glyphicon-star-empty"></span> 关注</a>
+<a class="btn btn-default btn-xs"><span class="glyphicon glyphicon-share"></span> 分享</a>
+</div>
+</p>
 </div>

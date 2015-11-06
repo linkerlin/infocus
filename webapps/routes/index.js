@@ -39,6 +39,11 @@ router.get('/search', function(req, res, next) {
     if (!keyword) {
         res.redirect("/");
     }
+    if (user) {
+        query.userid = user.weiboid;
+    } else {
+        query.userid = "";
+    }
     searchService.query(query,function(e,data,info) {
         if (e) {
             next(e);
