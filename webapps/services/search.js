@@ -4,7 +4,7 @@ var logger = require("../lib/logger").getLogger('search');
 module.exports = {
     query:function (options, next) {
         var path = search_server.path;
-        path+="?query="+encodeURIComponent(options.keyword);
+        path+="?query="+encodeURIComponent(options.keyword+"/date");
         if (options.start) {
             path+="&start="+options.start;
         }
