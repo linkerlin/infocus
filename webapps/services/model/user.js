@@ -6,6 +6,7 @@ var UserSchema = new mongoose.Schema({
     nickname: {type:String, required: true, trim: true, index: true, unique: true},
     avatar: {type:String},
     weibouid: {type:String},
+    markedpage: [{page:{type:ObjectId,ref:'UserMarkedPage'}}],
     addtime: {type:Date, default: Date.now },
     updatetime: {type:Date, default: Date.now }
 });

@@ -42,6 +42,12 @@ module.exports = {
         .findOne(filter)
         .exec(callback);
     },
+    findOneFull: function(profile,callback) {
+        User
+        .findOne({weiboid:profile.userid})
+        .populate("markedpage.page")
+        .exec(callback);
+    },
     // verify: function(username, password, callback) {
     //     User
     //     .findOne()

@@ -11,7 +11,7 @@
                             <li><a href="#topics">话题</a></li>
                             <%if (locals.user) {%>
                                 <li>
-                                    <a href="#"><%=user.username%></a>
+                                    <a href="/account"><%=user.username%></a>
                                 </li>
                                 <li><a href="/auth/logout">退出</a></li>
                             <%}else {%>

@@ -6,10 +6,11 @@
 date = new Date(locals.pubDate);
 displayDate = date.toLocaleDateString();
 displayTime = date.toLocaleTimeString();
+url = encodeURIComponent(link);
 %>
 <small><span class="glyphicon glyphicon-time" alt="<%=displayTime%>"></span> <%=displayDate%></small>
 <br>
-<a class="btn btn-default btn-xs"><span class="glyphicon glyphicon-star-empty"></span> 关注</a>
+<a class="btn btn-default btn-xs" href="/account/mark?title=<%=title%>&url=<%=url%>&pubdate=<%=pubDate%>"><span class="glyphicon glyphicon-star-empty"></span> 关注</a>
 <a class="btn btn-default btn-xs"><span class="glyphicon glyphicon-share"></span> 分享</a>
 </div>
 </p>

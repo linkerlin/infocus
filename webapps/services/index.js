@@ -1,5 +1,6 @@
 module.exports = {
     Search: require('./search'),
     User: require('./user'),
-    Topic: require('./topic')
+    Topic: require('./topic'),
+    Page: require('./page')
 };

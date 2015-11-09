@@ -1,4 +1,5 @@
 module.exports={
 	User:require("./user"),
-	Topic:require("./topic")
+	Topic:require("./topic"),
+	UserMarkedPage:require('./usermarkedpage')
 };
