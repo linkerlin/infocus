@@ -14,17 +14,18 @@ module.exports = {
         page.save(function(err){
             if (err) {
                 callback(err);
+            } else {
+                User.findOne({weiboid:values.userid})
+                .exec(function(e, user){
+                    if (e) {
+                        callback(e);
+                    } else {
+                        console.log(user);
+                        user.markedpage.push({page:page});
+                        user.save(callback);
+                    }
+                });
             }
-            User.findOne({weiboid:values.userid})
-            .exec(function(e, user){
-                if (e) {
-                    callback(e);
-                } else {
-                    console.log(user);
-                    user.markedpage.push({page:page});
-                    user.save(callback);
-                }
-            });
         });
     }
 };
