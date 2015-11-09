@@ -17,7 +17,7 @@ router.get('/', utils.checkSignIn, function(req, res, next) {
 });
 
 router.get('/mark', utils.checkSignIn, function(req, res, next) {
-    var user = req.session.uesr;
+    var user = req.session.user;
     var userid = user.weiboid;
     //var userid = "1687910717";
     var query = req.query;
